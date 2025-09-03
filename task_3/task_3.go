@@ -23,10 +23,10 @@ func main() {
 		fmt.Println("пример: go run main.go 3")
 		return
 	}
-
 	numWorkers, err := strconv.Atoi(os.Args[1])
+	//валидация
 	if err != nil || numWorkers <= 0 {
-		fmt.Println("Количество воркеров должно быть положительным числом.")
+		fmt.Println("количество воркеров должно быть положительным числом.")
 		return
 	}
 
@@ -42,11 +42,11 @@ func main() {
 	// отправка задач
 	for j := 1; j <= 15; j++ {
 		jobs <- j
-		fmt.Printf("Главная горутина отправила задачу: %d\n", j)
+		fmt.Printf("главная горутина отправила задачу: %d\n", j)
 		time.Sleep(time.Second)
 	}
 
-	close(jobs) // закрываем канал → воркеры завершатся
+	close(jobs) // закрываем канал -> воркеры завершатся
 	wg.Wait()
-	fmt.Println("Все задачи обработаны, программа завершена.")
+	fmt.Println("все задачи обработаны, программа завершена.")
 }
